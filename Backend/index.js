@@ -9,7 +9,7 @@ dotenv.config();
 
 const app = express();
 const corsoption = {
-  origin: 'http://localhost:5173',
+  origin: process.env.FRONTEND_URL || 'http://localhost:5173',
   method: ['GET', 'POST', 'PUT', 'DELETE'],
   allowHeaders: ['Content-Type', 'Authorization']
 }
@@ -17,8 +17,9 @@ const corsoption = {
 const __dirname = path.resolve();
 
 app.use(cors(corsoption));
-app.use(cors())
 app.use(express.json());
+
+
 app.use("/api/products", router)
 if (process.env.NODE_ENV == "production") {
   app.use(express.static(path.join(__dirname, '/Frontend/dist')))
@@ -29,11 +30,10 @@ if (process.env.NODE_ENV == "production") {
     res.sendFile(path.resolve(__dirname, "Frontend", "dist", "index.html"))
   })
 }
+
+connectDB(); 
 const PORT = process.env.PORT || 3000;
-
-
 app.listen(PORT, () => {
-  connectDB();
   console.log(`http://localhost:${PORT}`)
 })
 
