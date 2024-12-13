@@ -17,6 +17,7 @@ const corsoption = {
 const __dirname = path.resolve();
 
 app.use(cors(corsoption));
+app.use(cors());
 app.use(express.json());
 
 
@@ -32,7 +33,7 @@ if (process.env.NODE_ENV == "production") {
 }
 
 console.log('before db connection');
-connectDB(); 
+connectDB();
 console.log('after db connection');
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
