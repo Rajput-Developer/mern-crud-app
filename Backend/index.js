@@ -9,7 +9,7 @@ dotenv.config();
 
 const app = express();
 const corsoption = {
-  origin: process.env.FRONTEND_URL || 'http://localhost:5173' || 'https://mern-crud-app-3-5if1.onrender.com',
+  origin: process.env.FRONTEND_URL || 'http://localhost:5173',
   method: ['GET', 'POST', 'PUT', 'DELETE'],
   allowHeaders: ['Content-Type', 'Authorization']
 }
@@ -22,18 +22,18 @@ app.use(express.json());
 
 
 app.use("/api/products", router)
-if (process.env.NODE_ENV == "production") {
-  app.use(express.static(path.join(__dirname, '/Frontend/dist')))
 
 
-  // render frontend 
-  app.get("*", (req, res) => {
-    res.sendFile(path.resolve(__dirname, "Frontend", "dist", "index.html"))
-  })
-}
+// DBConnection
+connectDB();
+
+app.use(express.static(path.join(__dirname, '/Frontend/dist')))
+// render frontend 
+app.get("*", (req, res) => {
+  res.sendFile(path.resolve(__dirname, "Frontend", "dist", "index.html"))
+})
 
 console.log('before db connection');
-connectDB();
 console.log('after db connection');
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
