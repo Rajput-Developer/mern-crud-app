@@ -9,7 +9,7 @@ dotenv.config();
 
 const app = express();
 const corsoption = {
-  origin: process.env.FRONTEND_URL || 'http://localhost:5173',
+  origin: process.env.FRONTEND_URL || 'http://localhost:5173' || 'https://mern-crud-app-3-5if1.onrender.com',
   method: ['GET', 'POST', 'PUT', 'DELETE'],
   allowHeaders: ['Content-Type', 'Authorization']
 }
