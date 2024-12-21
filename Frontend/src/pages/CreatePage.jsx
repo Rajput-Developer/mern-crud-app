@@ -21,7 +21,7 @@ export default function CreatePage() {
     if (newProduct.name != '' && newProduct.image != '' && newProduct.price != '') {
       try {
         await axios.post('http://localhost:5000/api/products', newProduct);
-        toast('Product added sucessfully');
+        toast.success('Product added sucessfully');
         setNewProduct({ name: '', image: '', price: '' })
       } catch (error) {
         toast.error('Error in adding product')

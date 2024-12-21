@@ -34,7 +34,7 @@ export default function HomePage() {
       if (response.data.sucess) {
         setProductArray((prev) => prev.filter((productId) => productId._id != id))
       }
-      toast(response.data.message)
+      toast.success(response.data.message)
     } catch (error) {
       toast.error('Error deleting product')
     }
@@ -104,7 +104,7 @@ export default function HomePage() {
                 <div className="mb-3">
                   <label htmlFor="text" className="form-label">Product Name</label>
 
-                  <input type="text" name='name' value={result.name =='' || result.name} onChange={(e) => setresult(e.target.value)} className="form-control" />
+                  <input type="text" name='name' value={result.name == '' || result.name} onChange={(e) => setresult(e.target.value)} className="form-control" />
                 </div>
                 <div className="mb-3">
                   <label htmlFor="text" className="form-label">Product Price</label>
